@@ -51,5 +51,7 @@ for end_week_day, week_analysis in tweets_by_week.iterrows():
 
 fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
 fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
-st.dataframe(df) # if need to display dataframe
 st.plotly_chart(fig)
+
+# display del dataset
+st.dataframe(df)
