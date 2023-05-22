@@ -17,4 +17,4 @@ df.set_index('Element', inplace=True)
 df_transposed = df.T
 
 # Display bar chart
-st.bar_chart(df)
+st.bar_chart(df_transposed)
