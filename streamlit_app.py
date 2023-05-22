@@ -14,6 +14,7 @@ df = pd.DataFrame(data)
 
 # Set 'Element' column as index
 df.set_index('Element', inplace=True)
+df_transposed = df.T
 
 # Display bar chart
 st.bar_chart(df)
