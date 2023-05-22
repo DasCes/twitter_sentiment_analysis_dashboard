@@ -29,7 +29,7 @@ chart = alt.Chart(df_melted).mark_bar().encode(
     color=alt.Color('Value', sort=value_order),
     column=alt.Column('Value', sort=value_order),
 ).properties(
-    width=20  # Adjust the width of each column
+    width=10  # Adjust the width of each column
 )
 
 # Display the chart using Streamlit
