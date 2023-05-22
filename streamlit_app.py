@@ -5,25 +5,31 @@ import altair as alt
 # Example data
 data = {
     'Element': ['A', 'B', 'C', 'D'],
-    'Category1': [10, 15, 5, 12],
-    'Category2': [8, 7, 6, 10],
-    'Category3': [5, 9, 15, 4]
+    'Value1': [10, 15, 5, 12],
+    'Value2': [8, 7, 6, 10],
+    'Value3': [5, 9, 15, 4]
 }
 
 # Create DataFrame
 df = pd.DataFrame(data)
 
 # Melt DataFrame to transform columns into rows
-df_melted = df.melt('Element', var_name='Category', value_name='Value')
+df_melted = df.melt('Element', var_name='Value', value_name='Count')
+
+# Sort DataFrame by 'Element' and 'Value' columns
+df_melted = df_melted.sort_values(['Element', 'Value'])
+
+# Define the ordering of the 'Value' categories
+value_order = ['Value1', 'Value2', 'Value3']
 
 # Create bar chart using Altair
 chart = alt.Chart(df_melted).mark_bar().encode(
-    x='Element',
-    y='Value',
-    color='Category',
-    column='Category'
+    x=alt.X('Element', sort=None),
+    y='Count',
+    color=alt.Color('Value', sort=value_order),
+    column=alt.Column('Value', sort=value_order),
 ).properties(
-    width=100  # Adjust the width of each column
+    width=80  # Adjust the width of each column
 )
 
 # Display the chart using Streamlit
