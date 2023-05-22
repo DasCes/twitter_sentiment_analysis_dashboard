@@ -49,7 +49,7 @@ for end_week_day, week_analysis in tweets_by_week.iterrows():
     df = pd.DataFrame(df_list, columns=["weeks", "negative", "neutral", "positive"])
 
 
-
+st.subheader('vader sentiment analysis')
 fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
 fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
 st.plotly_chart(fig)
