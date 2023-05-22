@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import altair as alt
 
 # Example data
 data = {
@@ -12,11 +13,18 @@ data = {
 # Create DataFrame
 df = pd.DataFrame(data)
 
-# Set 'Element' column as index
-df.set_index('Element', inplace=True)
+# Melt DataFrame to transform columns into rows
+df_melted = df.melt('Element', var_name='Category', value_name='Value')
 
-# Transpose DataFrame
-df_transposed = df.T
+# Create bar chart using Altair
+chart = alt.Chart(df_melted).mark_bar().encode(
+    x='Element',
+    y='Value',
+    color='Category',
+    column='Category'
+).properties(
+    width=100  # Adjust the width of each column
+)
 
-# Display bar chart
-st.bar_chart(df_transposed)
+# Display the chart using Streamlit
+st.altair_chart(chart, use_container_width=True)
