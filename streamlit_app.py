@@ -31,7 +31,7 @@ for end_week_day, week_analysis in tweets_by_week.iterrows():
     firstDay_week_string = firstDay_week_string[-2:]
     week_label = firstDay_week_string + "-" + endDay_week_string
 
-    current_week.append(week_label)
+    current_week.append(end_week_day)
 
 
     vader_negative = week_analysis['vader_SCORE_pnn_numeric'].count(-1.0)
