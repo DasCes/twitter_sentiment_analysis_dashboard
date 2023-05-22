@@ -26,7 +26,9 @@ for end_week_day, week_analysis in tweets_by_week.iterrows():
     firstDay_week_string = week_before.strftime('%Y-%m-%d')
     endDay_week_string = endDay_week_string[-2:]
     firstDay_week_string = firstDay_week_string[-2:]
-    week_label = firstDay_week_string + "-" + endDay_week_string
+    month = week_before.strftime('%b')
+
+    week_label = month + firstDay_week_string + "-" + endDay_week_string
 
     print(week_label)
     custom_labels.append(week_label)
