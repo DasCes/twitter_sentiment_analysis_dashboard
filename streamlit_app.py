@@ -28,9 +28,7 @@ chart = alt.Chart(df_melted).mark_bar().encode(
     y='Count',
     color=alt.Color('Value', sort=value_order),
     column=alt.Column('Value', sort=value_order),
-).properties(
-    width=5  # Adjust the width of each column
 )
 
 # Display the chart using Streamlit
-st.altair_chart(chart, use_container_width=True)
+st.altair_chart(chart)
