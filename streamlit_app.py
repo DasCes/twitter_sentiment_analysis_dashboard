@@ -8,6 +8,6 @@ df = pd.DataFrame(
     columns=["Product", "Comfort", "Sound", "Calls"]
 )
 
-fig = px.bar(df, x="Product", y=["Comfort", "Sound", "Calls"], barmode='group', height=400)
+fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
 # st.dataframe(df) # if need to display dataframe
 st.plotly_chart(fig)
