@@ -5,7 +5,8 @@ import time
 from datetime import datetime, timedelta
 
 
-
+st.set_page_config(layout="centered", page_icon="Logo_of_Twitter.png",page_title="SenForWirn2023")
+st.title("Sentiment analysis by week", anchor=None, help=None)
 
 data = pd.read_csv('data/all_at_21_05_2023.csv', index_col=[0])
 data['created_at'] = pd.to_datetime(data['created_at'])
