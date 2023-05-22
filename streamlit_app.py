@@ -5,10 +5,6 @@ import time
 from datetime import datetime, timedelta
 
 
-# df = pd.DataFrame(
-#     [["Product A", 5.6, 7.8, 5], ["Product B", 5.8, 7.2, 4.9]],
-#     columns=["weeks", "negative", "neutral", "positive"]
-# )
 
 
 data = pd.read_csv('data/all_at_21_05_2023.csv', index_col=[0])
@@ -18,6 +14,7 @@ data.set_index("created_at", inplace=True)
 tweets_by_week = data.resample('W').apply(list)
 
 df_list = []
+custom_labels = []
 
 for end_week_day, week_analysis in tweets_by_week.iterrows():
     current_week = []
@@ -31,6 +28,8 @@ for end_week_day, week_analysis in tweets_by_week.iterrows():
     firstDay_week_string = firstDay_week_string[-2:]
     week_label = firstDay_week_string + "-" + endDay_week_string
 
+    print(week_label)
+    custom_labels.append(week_label)
     current_week.append(end_week_day)
 
 
@@ -49,5 +48,6 @@ for end_week_day, week_analysis in tweets_by_week.iterrows():
 
 
 fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
+fig.update_xaxes(ticktext=custom_labels, tickvals=data['weeks'])
 st.dataframe(df) # if need to display dataframe
 st.plotly_chart(fig)
