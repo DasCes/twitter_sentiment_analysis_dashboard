@@ -40,7 +40,7 @@ def main():
 
 
         if analysis_type_selected == "sentiment analysis":
-            data_size = st.radio(
+            sentiment_model_selected = st.radio(
                 "which model?",
                 ('vader', 'xlm_roBERTa')
             )
@@ -54,11 +54,12 @@ def main():
 
 
     if analysis_type_selected == "sentiment analysis":
-            if data_size == "Complete dataset":
-                st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
+            if data_size == "Complete dataset" and sentiment_model_selected == "vader":
+                st.title("Sentiment analysis (vader) on complete dataset", anchor=None, help=None)
                 for end_week_day, week_analysis in tweets_by_week.iterrows():
                     current_week = []
-
+                    df_list = []
+                    custom_labels = []
                     # tutte ste righe per far sì che la label si "12-19" dove 12 è il primo giorno della settimana in esame e 19 è l'ultimo
                     endDay_week_string = end_week_day.strftime('%Y-%m-%d')
                     date = datetime.strptime(endDay_week_string, '%Y-%m-%d')
@@ -86,6 +87,42 @@ def main():
 
                 df = pd.DataFrame(df_list, columns=["weeks", "negative", "neutral", "positive"])
                 st.subheader('vader sentiment analysis')
+                fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
+                fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                st.plotly_chart(fig)
+            if data_size == "Complete dataset" and sentiment_model_selected == "xlm_roBERTa":
+                st.title("Sentiment analysis (xlm_roBERTa) on complete dataset", anchor=None, help=None)
+                for end_week_day, week_analysis in tweets_by_week.iterrows():
+                    current_week = []
+                    df_list = []
+                    custom_labels = []
+                    # tutte ste righe per far sì che la label si "12-19" dove 12 è il primo giorno della settimana in esame e 19 è l'ultimo
+                    endDay_week_string = end_week_day.strftime('%Y-%m-%d')
+                    date = datetime.strptime(endDay_week_string, '%Y-%m-%d')
+                    week_before = date - timedelta(weeks=1)
+                    firstDay_week_string = week_before.strftime('%Y-%m-%d')
+                    endDay_week_string = endDay_week_string[-2:]
+                    firstDay_week_string = firstDay_week_string[-2:]
+                    month = week_before.strftime('%b')
+
+                    week_label = month + " " + firstDay_week_string + "-" + endDay_week_string
+
+                    print(week_label)
+                    custom_labels.append(week_label)
+                    current_week.append(end_week_day)
+
+                    vader_negative = week_analysis['xlm_roberta_SCORE_numeric'].count(-1.0)
+                    current_week.append(vader_negative)
+
+                    vader_neutral = week_analysis['xlm_roberta_SCORE_numeric'].count(0.0)
+                    current_week.append(vader_neutral)
+
+                    vader_positive = week_analysis['xlm_roberta_SCORE_numeric'].count(1.0)
+                    current_week.append(vader_positive)
+                    df_list.append(current_week)
+
+                df = pd.DataFrame(df_list, columns=["weeks", "negative", "neutral", "positive"])
+                st.subheader('xlm sentiment analysis')
                 fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 st.plotly_chart(fig)
