@@ -318,7 +318,13 @@ def main():
     if analysis_type_selected == "topic analysis":
 
         if data_size == "Complete dataset":
-            st.markdown("data/topic_modeling/barchart_completeDataset.html", unsafe_allow_html=True)
+            # Specify the path to your HTML file
+            html_file_path = "data/topic_modeling/barchart_completeDataset.html"
+
+            # Read the contents of the HTML file
+            with open(html_file_path, "r") as file:
+                html_content = file.read()
+            st.markdown(html_content, unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
