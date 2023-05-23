@@ -12,7 +12,7 @@ import streamlit as st
 
 
 def main():
-    st.title("Sentiment analysis by week", anchor=None, help=None)
+
 
     with st.sidebar:
         st.header("Configuration")
@@ -33,7 +33,8 @@ def main():
 
 
 
-        if analysis_type_selected == "sentiment analysis":
+        if analysis_type_selected == "sentiment analysis" and data_size == "Complete dataset":
+            st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
             st.caption(
                 """A lato viene mostrata le sentiment analysis prodotte da i modelli "vader" e "xlm roBERTa" """
             )
