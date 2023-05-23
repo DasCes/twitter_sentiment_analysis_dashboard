@@ -34,12 +34,6 @@ tweets_week = lastWeek_data.resample('D').apply(list)
 data.set_index("created_at", inplace=True)
 tweets_by_week = data.resample('W').apply(list)
 
-
-
-
-
-
-
 df_list = []
 custom_labels = []
 
@@ -129,13 +123,7 @@ def main():
                 fig = px.pie(values=score_piechart, names=labels, color=labels, color_discrete_sequence=['#1b64ab', '#89c3eb', '#f53c3c'])
                 st.plotly_chart(fig, use_container_width=False, sharing="streamlit")
 
-                with open("flower.png", "rb") as file:
-                    btn = st.download_button(
-                        label="Download image",
-                        data=file,
-                        file_name="flower.png",
-                        mime="image/png"
-                    )
+
 
             if data_size == "Complete dataset" and sentiment_model_selected == "xlm_roBERTa":
                 st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
