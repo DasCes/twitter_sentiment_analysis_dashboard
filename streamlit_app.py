@@ -118,6 +118,15 @@ def main():
                 fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 st.plotly_chart(fig)
 
+                # per creare pie chart xml_roberta
+                score_for_xmlroberta_piechart = [0, 0, 0]
+                labels = ["negative", "neutral", "positive"]
+                for x in data.xlm_roberta_SCORE_numeric:
+                    score_for_xmlroberta_piechart[int(x) + 1] += 1
+
+                fig = px.pie(names=labels, values=score_for_xmlroberta_piechart)
+                st.plotly_chart(fig, use_container_width=False, sharing="streamlit", theme="streamlit")
+
             if data_size == "Complete dataset" and sentiment_model_selected == "xlm_roBERTa":
                 st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
                 df_list = []
