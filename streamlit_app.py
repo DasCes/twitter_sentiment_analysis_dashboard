@@ -19,8 +19,8 @@ data.set_index("created_at", inplace=True)
 tweets_month = data.resample('D').apply(list)
 
 
-data['created_at'] = pd.to_datetime(data['created_at'])
-data.set_index("created_at", inplace=True)
+# data['created_at'] = pd.to_datetime(data['created_at'])
+# data.set_index("created_at", inplace=True)
 tweets_by_week = data.resample('W').apply(list)
 
 
