@@ -1,5 +1,10 @@
 import inspect
 import textwrap
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import time
+from datetime import datetime, timedelta
 
 import streamlit as st
 
@@ -7,7 +12,8 @@ import streamlit as st
 
 
 def main():
-    st.title("Streamlit ECharts Demo")
+    st.set_page_config(layout="centered", page_icon="Logo_of_Twitter.png", page_title="SenForWirn2023")
+    st.title("Sentiment analysis by week", anchor=None, help=None)
 
     with st.sidebar:
         st.header("Configuration")
