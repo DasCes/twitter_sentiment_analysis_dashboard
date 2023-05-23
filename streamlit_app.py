@@ -125,7 +125,7 @@ def main():
                 for x in data.vader_SCORE_pnn_numeric:
                     score_piechart[int(x) + 1] += 1
 
-                fig = px.pie(values=score_piechart, names=labels, color=labels, color_discrete_sequence=['#f53c3c', '#1b64ab', '#89c3eb'])
+                fig = px.pie(values=score_piechart, names=labels, color=labels, color_discrete_sequence=['#1b64ab', '#89c3eb', '#f53c3c'])
                 st.plotly_chart(fig, use_container_width=False, sharing="streamlit")
 
             if data_size == "Complete dataset" and sentiment_model_selected == "xlm_roBERTa":
