@@ -14,12 +14,22 @@ data = pd.read_csv('data/all_at_21_05_2023.csv', index_col=[0])
 # dati del dataset completo divisi per settimana
 data['created_at'] = pd.to_datetime(data['created_at'])
 
+# create df of last month
 end_date = data['created_at'].max().date()  # Get the maximum date in the 'created_at' column
 start_date = end_date - timedelta(days=30)  # Subtract 30 days from the end date
 lastMonth_data = data[(data['created_at'].dt.date >= start_date) & (data['created_at'].dt.date <= end_date)]
 lastMonth_data.set_index("created_at", inplace=True)
 tweets_month = lastMonth_data.resample('D').apply(list)
 
+
+end_date = data['created_at'].max().date()  # Get the maximum date in the 'created_at' column
+start_date = end_date - timedelta(days=7)  # Subtract 30 days from the end date
+lastWeek_data = data[(data['created_at'].dt.date >= start_date) & (data['created_at'].dt.date <= end_date)]
+lastWeek_data.set_index("created_at", inplace=True)
+tweets_week = lastWeek_data.resample('D').apply(list)
+
+
+# create df complete divided by weeks
 data.set_index("created_at", inplace=True)
 tweets_by_week = data.resample('W').apply(list)
 
@@ -188,10 +198,27 @@ def main():
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 st.plotly_chart(fig)
 
-
-            if data_size == "last week":
+            if data_size == "last week" and sentiment_model_selected == "vader":
                 st.title("Sentiment analysis on last week dataset", anchor=None, help=None)
+                df_list = []
+                for day, day_analysis in tweets_week.iterrows():
+                    current_day = []
+                    current_day.append(str(day))
+                    vader_negative = day_analysis['vader_SCORE_pnn_numeric'].count(-1.0)
+                    current_day.append(vader_negative)
 
+                    vader_neutral = day_analysis['vader_SCORE_pnn_numeric'].count(0.0)
+                    current_day.append(vader_neutral)
+
+                    vader_positive = day_analysis['vader_SCORE_pnn_numeric'].count(1.0)
+                    current_day.append(vader_positive)
+                    df_list.append(current_day)
+
+                df = pd.DataFrame(df_list, columns=["days", "negative", "neutral", "positive"])
+                st.subheader('vader sentiment analysis')
+                fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
+                # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                st.plotly_chart(fig)
 
 
 
