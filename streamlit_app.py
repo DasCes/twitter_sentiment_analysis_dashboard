@@ -15,6 +15,9 @@ data['created_at'] = pd.to_datetime(data['created_at'])
 end_date = data['created_at'].max().date()  # Get the maximum date in the 'created_at' column
 start_date = end_date - timedelta(days=30)  # Subtract 30 days from the end date
 lastMonth_data = data[(data['created_at'].dt.date >= start_date) & (data['created_at'].dt.date <= end_date)]
+data.set_index("created_at", inplace=True)
+lastMonth_data = lastMonth_data.resample('D').apply(list)
+
 
 data['created_at'] = pd.to_datetime(data['created_at'])
 data.set_index("created_at", inplace=True)
@@ -141,12 +144,10 @@ def main():
                 st.title("Sentiment analysis on last month dataset", anchor=None, help=None)
                 df_list = []
                 current_day = []
-                for index, day_analysis in lastMonth_data.iterrows():
+                for day, day_analysis in lastMonth_data.iterrows():
 
 
-                    current_day.append(index)
-                    # print()
-
+                    current_day.append(day)
                     vader_negative = day_analysis['xlm_roberta_SCORE_numeric'].count(-1.0)
                     current_day.append(vader_negative)
 
