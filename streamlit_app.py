@@ -13,7 +13,7 @@ def main():
         st.header("Configuration")
         api_options = ("sentiment analysis", "topic analysis")
         selected_api = st.selectbox(
-            label="Choose your preferred API:",
+            label="Seleziona il tipo di analisi",
             options=api_options,
         )
 
