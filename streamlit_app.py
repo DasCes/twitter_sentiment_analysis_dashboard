@@ -33,8 +33,7 @@ def main():
 
 
 
-        if analysis_type_selected == "sentiment analysis" and data_size == "Complete dataset":
-            st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
+        if analysis_type_selected == "sentiment analysis":
             st.caption(
                 """A lato viene mostrata le sentiment analysis prodotte da i modelli "vader" e "xlm roBERTa" """
             )
@@ -43,12 +42,10 @@ def main():
                 """A lato viene mostrata la topic analysis prodotta da "Bertopic model" """
             )
 
-    # demo()
+    if data_size == "Complete dataset":
+        st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
 
-    # sourcelines, _ = inspect.getsourcelines(demo)
-    # with st.expander("Source Code"):
-        # st.code(textwrap.dedent("".join(sourcelines[1:])))
-    # st.markdown(f"Credit: {url}")
+
 
 
 if __name__ == "__main__":
