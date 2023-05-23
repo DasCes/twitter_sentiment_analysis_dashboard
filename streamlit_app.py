@@ -152,9 +152,9 @@ def main():
                     current_day.append(vader_positive)
                     df_list.append(current_day)
 
-                df = pd.DataFrame(df_list, columns=["weeks", "negative", "neutral", "positive"])
+                df = pd.DataFrame(df_list, columns=["days", "negative", "neutral", "positive"])
                 st.subheader('xlm sentiment analysis')
-                fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
+                fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 st.plotly_chart(fig)
 
