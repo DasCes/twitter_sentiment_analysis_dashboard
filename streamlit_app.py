@@ -22,11 +22,8 @@ def main():
             options=analysis_type,
         )
 
-        page_options = (
-            # list(ST_PY_DEMOS.keys())
-            # if selected_api == "pyecharts"
-            # else list(ST_DEMOS.keys())
-        )
+
+        st.sidebar.markdown("--")
         genre = st.radio(
             "Seleziona il dataset",
             ('Complete dataset', 'last month', 'last week'))
