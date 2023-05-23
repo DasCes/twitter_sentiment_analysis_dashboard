@@ -163,6 +163,7 @@ def main():
                 st.subheader('xlm sentiment analysis')
                 fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
 
             if data_size == "last month" and sentiment_model_selected == "xlm_roBERTa":
@@ -185,6 +186,7 @@ def main():
                 st.subheader('xlm sentiment analysis')
                 fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
 
             if data_size == "last month" and sentiment_model_selected == "vader":
@@ -207,6 +209,7 @@ def main():
                 st.subheader('vader sentiment analysis')
                 fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
 
             if data_size == "last week" and sentiment_model_selected == "vader":
@@ -229,6 +232,7 @@ def main():
                 st.subheader('vader sentiment analysis')
                 fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
 
             if data_size == "last week" and sentiment_model_selected == "xlm_roBERTa":
@@ -251,6 +255,7 @@ def main():
                 st.subheader('xlm sentiment analysis')
                 fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
 
 if __name__ == "__main__":
