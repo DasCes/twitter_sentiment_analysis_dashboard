@@ -80,6 +80,7 @@ def main():
 
 
     if analysis_type_selected == "sentiment analysis":
+
             if data_size == "Complete dataset" and sentiment_model_selected == "vader":
                 st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
                 df_list = []
@@ -220,7 +221,27 @@ def main():
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 st.plotly_chart(fig)
 
+            if data_size == "last week" and sentiment_model_selected == "xlm_roBERTa":
+                st.title("Sentiment analysis on last month dataset", anchor=None, help=None)
+                df_list = []
+                for day, day_analysis in tweets_week.iterrows():
+                    current_day = []
+                    current_day.append(str(day))
+                    vader_negative = day_analysis['xlm_roberta_SCORE_numeric'].count(-1.0)
+                    current_day.append(vader_negative)
 
+                    vader_neutral = day_analysis['xlm_roberta_SCORE_numeric'].count(0.0)
+                    current_day.append(vader_neutral)
+
+                    vader_positive = day_analysis['xlm_roberta_SCORE_numeric'].count(1.0)
+                    current_day.append(vader_positive)
+                    df_list.append(current_day)
+
+                df = pd.DataFrame(df_list, columns=["days", "negative", "neutral", "positive"])
+                st.subheader('xlm sentiment analysis')
+                fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
+                # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                st.plotly_chart(fig)
 
 if __name__ == "__main__":
     st.set_page_config(page_icon="Logo_of_Twitter.png", page_title="SenForWirn2023")
