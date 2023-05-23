@@ -71,7 +71,7 @@ def main():
 
     if analysis_type_selected == "sentiment analysis":
             if data_size == "Complete dataset" and sentiment_model_selected == "vader":
-                st.title("Sentiment analysis (vader) on complete dataset", anchor=None, help=None)
+                st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
                 df_list = []
                 custom_labels = []
                 for end_week_day, week_analysis in tweets_by_week.iterrows():
@@ -108,7 +108,7 @@ def main():
                 st.plotly_chart(fig)
 
             if data_size == "Complete dataset" and sentiment_model_selected == "xlm_roBERTa":
-                st.title("Sentiment analysis (xlm_roBERTa) on complete dataset", anchor=None, help=None)
+                st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
                 df_list = []
                 custom_labels = []
                 for end_week_day, week_analysis in tweets_by_week.iterrows():
