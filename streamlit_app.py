@@ -144,7 +144,6 @@ def main():
                 for index, day_analysis in lastMonth_data.iterrows():
 
                     current_day = []
-
                     current_day.append(index)
 
                     vader_negative = day_analysis['xlm_roberta_SCORE_numeric'].count(-1.0)
