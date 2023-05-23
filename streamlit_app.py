@@ -56,10 +56,10 @@ def main():
     if analysis_type_selected == "sentiment analysis":
             if data_size == "Complete dataset" and sentiment_model_selected == "vader":
                 st.title("Sentiment analysis (vader) on complete dataset", anchor=None, help=None)
+                df_list = []
+                custom_labels = []
                 for end_week_day, week_analysis in tweets_by_week.iterrows():
                     current_week = []
-                    df_list = []
-                    custom_labels = []
                     # tutte ste righe per far sì che la label si "12-19" dove 12 è il primo giorno della settimana in esame e 19 è l'ultimo
                     endDay_week_string = end_week_day.strftime('%Y-%m-%d')
                     date = datetime.strptime(endDay_week_string, '%Y-%m-%d')
@@ -92,10 +92,10 @@ def main():
                 st.plotly_chart(fig)
             if data_size == "Complete dataset" and sentiment_model_selected == "xlm_roBERTa":
                 st.title("Sentiment analysis (xlm_roBERTa) on complete dataset", anchor=None, help=None)
+                df_list = []
+                custom_labels = []
                 for end_week_day, week_analysis in tweets_by_week.iterrows():
                     current_week = []
-                    df_list = []
-                    custom_labels = []
                     # tutte ste righe per far sì che la label si "12-19" dove 12 è il primo giorno della settimana in esame e 19 è l'ultimo
                     endDay_week_string = end_week_day.strftime('%Y-%m-%d')
                     date = datetime.strptime(endDay_week_string, '%Y-%m-%d')
