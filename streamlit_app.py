@@ -27,10 +27,9 @@ def main():
             # if selected_api == "pyecharts"
             # else list(ST_DEMOS.keys())
         )
-        selected_page = st.selectbox(
-            label="Choose an example",
-            options=page_options,
-        )
+        genre = st.radio(
+            "Seleziona il dataset",
+            ('Complete dataset', 'last month', 'last week'))
         # demo, url = (
             # ST_DEMOS[selected_page]
             # if selected_api == "echarts"
