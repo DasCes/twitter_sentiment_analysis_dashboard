@@ -43,6 +43,10 @@ def main():
             st.caption(
                 """A lato viene mostrata le sentiment analysis prodotte da i modelli "vader" e "xlm roBERTa" """
             )
+            data_size = st.radio(
+                "which model?",
+                ('vader', 'xlm_roBERTa')
+            )
         if analysis_type_selected == "topic analysis":
             st.caption(
                 """A lato viene mostrata la topic analysis prodotta da "Bertopic model" """
