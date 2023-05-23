@@ -16,6 +16,15 @@ def main():
 
     with st.sidebar:
         st.header("Configuration")
+
+        data_size = st.radio(
+            "Seleziona il dataset",
+            ('Complete dataset', 'last month', 'last week')
+        )
+
+        st.sidebar.markdown(" ")
+        st.sidebar.markdown(" ")
+
         analysis_type = ("sentiment analysis", "topic analysis")
         type_selected = st.selectbox(
             label="Seleziona il tipo di analisi",
@@ -23,16 +32,6 @@ def main():
         )
 
 
-        st.sidebar.markdown(" ")
-        st.sidebar.markdown(" ")
-        genre = st.radio(
-            "Seleziona il dataset",
-            ('Complete dataset', 'last month', 'last week'))
-        # demo, url = (
-            # ST_DEMOS[selected_page]
-            # if selected_api == "echarts"
-            # else ST_PY_DEMOS[selected_page]
-        # )
 
         if type_selected == "echarts":
             st.caption(
