@@ -35,15 +35,11 @@ def main():
 
         if analysis_type_selected == "sentiment analysis":
             st.caption(
-                """ECharts demos are extracted from https://echarts.apache.org/examples/en/index.html, 
-            by copying/formattting the 'option' json object into st_echarts.
-            Definitely check the echarts example page, convert the JSON specs to Python Dicts and you should get a nice viz."""
+                """A lato viene mostrata le sentiment analysis prodotte da i modelli "vader" e "xlm roBERTa" """
             )
         if analysis_type_selected == "topic analysis":
             st.caption(
-                """Pyecharts demos are extracted from https://github.com/pyecharts/pyecharts-gallery,
-            by copying the pyecharts object into st_pyecharts. 
-            Pyecharts is still using ECharts 4 underneath, which is why the theming between st_echarts and st_pyecharts is different."""
+                """A lato viene mostrata la topic analysis prodotta da "Bertopic model" """
             )
 
     # demo()
