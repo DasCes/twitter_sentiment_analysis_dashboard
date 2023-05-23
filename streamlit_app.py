@@ -12,7 +12,6 @@ import streamlit as st
 
 
 def main():
-    st.set_page_config(page_icon="Logo_of_Twitter.png", page_title="SenForWirn2023")
     st.title("Sentiment analysis by week", anchor=None, help=None)
 
     with st.sidebar:
@@ -60,8 +59,6 @@ def main():
 
 
 if __name__ == "__main__":
-    st.set_page_config(
-        page_title="Streamlit ECharts Demo", page_icon=":chart_with_upwards_trend:"
-    )
+    st.set_page_config(page_icon="Logo_of_Twitter.png", page_title="SenForWirn2023")
     main()
 
