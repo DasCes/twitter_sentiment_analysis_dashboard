@@ -16,10 +16,10 @@ def main():
 
     with st.sidebar:
         st.header("Configuration")
-        api_options = ("sentiment analysis", "topic analysis")
-        selected_api = st.selectbox(
+        analysis_type = ("sentiment analysis", "topic analysis")
+        type_selected = st.selectbox(
             label="Seleziona il tipo di analisi",
-            options=api_options,
+            options=analysis_type,
         )
 
         page_options = (
@@ -37,13 +37,13 @@ def main():
             # else ST_PY_DEMOS[selected_page]
         # )
 
-        if selected_api == "echarts":
+        if type_selected == "echarts":
             st.caption(
                 """ECharts demos are extracted from https://echarts.apache.org/examples/en/index.html, 
             by copying/formattting the 'option' json object into st_echarts.
             Definitely check the echarts example page, convert the JSON specs to Python Dicts and you should get a nice viz."""
             )
-        if selected_api == "pyecharts":
+        if type_selected == "pyecharts":
             st.caption(
                 """Pyecharts demos are extracted from https://github.com/pyecharts/pyecharts-gallery,
             by copying the pyecharts object into st_pyecharts. 
