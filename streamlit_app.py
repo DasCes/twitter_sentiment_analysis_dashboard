@@ -144,7 +144,7 @@ def main():
                 for day, day_analysis in lastMonth_data.iterrows():
 
 
-                    st.text(day + 'This is day')
+                    st.text(str(day) + 'This is day')
                 #
                 #     current_day = []
                 #
