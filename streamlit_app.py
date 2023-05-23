@@ -16,7 +16,7 @@ tweets_by_week = data.resample('W').apply(list)
 
 end_date = data['created_at'].max().date()  # Get the maximum date in the 'created_at' column
 start_date = end_date - timedelta(days=30)  # Subtract 30 days from the end date
-lastMonth_data = data.loc[(data['created_at'].dt.date >= start_date) & (data['created_at'].dt.date <= end_date), ['text']]
+lastMonth_data = data[(data['created_at'].dt.date >= start_date) & (data['created_at'].dt.date <= end_date)]
 
 df_list = []
 custom_labels = []
