@@ -276,7 +276,7 @@ def main():
                 # per creare pie chart vader
                 score_piechart = [0, 0, 0]
                 labels = ["negative", "neutral", "positive"]
-                for x in lastMonth_data.vader_SCORE_pnn_numeric:
+                for x in lastWeek_data.vader_SCORE_pnn_numeric:
                     score_piechart[int(x) + 1] += 1
 
                 fig = px.pie(values=score_piechart, names=labels, color=labels,
@@ -309,7 +309,7 @@ def main():
                 # per creare pie chart xlm_roBERTa
                 score_piechart = [0, 0, 0]
                 labels = ["negative", "neutral", "positive"]
-                for x in lastMonth_data.xlm_roberta_SCORE_numeric:
+                for x in lastWeek_data.xlm_roberta_SCORE_numeric:
                     score_piechart[int(x) + 1] += 1
 
                 fig = px.pie(values=score_piechart, names=labels, color=labels,
