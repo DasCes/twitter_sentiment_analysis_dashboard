@@ -116,7 +116,7 @@ def main():
                 st.subheader('vader sentiment analysis')
                 fig = px.bar(df, x="weeks", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
-                fig.update_yaxes(ticktext="number of tweets")
+                fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
 
                 # per creare pie chart xml_roberta
