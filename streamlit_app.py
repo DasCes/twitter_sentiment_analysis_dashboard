@@ -144,7 +144,7 @@ def main():
                 fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 st.plotly_chart(fig)
 
-            if data_size == "last month":
+            if data_size == "last month" and sentiment_model_selected == "xlm_roBERTa":
                 st.title("Sentiment analysis on last month dataset", anchor=None, help=None)
                 df_list = []
                 for day, day_analysis in tweets_month.iterrows():
@@ -162,6 +162,28 @@ def main():
 
                 df = pd.DataFrame(df_list, columns=["days", "negative", "neutral", "positive"])
                 st.subheader('xlm sentiment analysis')
+                fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
+                # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
+                st.plotly_chart(fig)
+
+            if data_size == "last month" and sentiment_model_selected == "vader":
+                st.title("Sentiment analysis on last month dataset", anchor=None, help=None)
+                df_list = []
+                for day, day_analysis in tweets_month.iterrows():
+                    current_day = []
+                    current_day.append(str(day))
+                    vader_negative = day_analysis['vader_SCORE_pnn_numeric'].count(-1.0)
+                    current_day.append(vader_negative)
+
+                    vader_neutral = day_analysis['vader_SCORE_pnn_numeric'].count(0.0)
+                    current_day.append(vader_neutral)
+
+                    vader_positive = day_analysis['vader_SCORE_pnn_numeric'].count(1.0)
+                    current_day.append(vader_positive)
+                    df_list.append(current_day)
+
+                df = pd.DataFrame(df_list, columns=["days", "negative", "neutral", "positive"])
+                st.subheader('vader sentiment analysis')
                 fig = px.bar(df, x="days", y=["negative", "neutral", "positive"], barmode='group', height=400)
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 st.plotly_chart(fig)
