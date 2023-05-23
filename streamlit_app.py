@@ -329,6 +329,17 @@ def main():
             # Render the HTML content in the Streamlit app
             st.components.v1.html(html_content, height=600)
 
+        if data_size == "last month":
+            # Specify the path to your HTML file
+            html_file_path = "data/topic_modeling/barchart_lastMonthDataset.html"
+
+            # Read the contents of the HTML file
+            with open(html_file_path, "r") as file:
+                html_content = file.read()
+
+            # Render the HTML content in the Streamlit app
+            st.components.v1.html(html_content, height=600)
+
 
 if __name__ == "__main__":
     st.set_page_config(page_icon="Logo_of_Twitter.png", page_title="SenForWirn2023")
