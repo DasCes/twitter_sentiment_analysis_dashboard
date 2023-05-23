@@ -23,7 +23,8 @@ def main():
         )
 
 
-        st.sidebar.markdown("--")
+        st.sidebar.markdown(" ")
+        st.sidebar.markdown(" ")
         genre = st.radio(
             "Seleziona il dataset",
             ('Complete dataset', 'last month', 'last week'))
