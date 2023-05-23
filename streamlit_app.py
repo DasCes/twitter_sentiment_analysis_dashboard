@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.express as px
 import time
 from datetime import datetime, timedelta
+import streamlit.components.v1 as components
 
 import streamlit as st
 
@@ -324,7 +325,9 @@ def main():
             # Read the contents of the HTML file
             with open(html_file_path, "r") as file:
                 html_content = file.read()
-            st.markdown(html_content, unsafe_allow_html=True)
+
+            # Render the HTML content in the Streamlit app
+            st.components.v1.html(html_content, height=600)
 
 
 if __name__ == "__main__":
