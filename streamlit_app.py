@@ -16,7 +16,7 @@ end_date = data['created_at'].max().date()  # Get the maximum date in the 'creat
 start_date = end_date - timedelta(days=30)  # Subtract 30 days from the end date
 lastMonth_data = data[(data['created_at'].dt.date >= start_date) & (data['created_at'].dt.date <= end_date)]
 data.set_index("created_at", inplace=True)
-tweets_month = data.resample('D').apply(list)
+tweets_month = lastMonth_data.resample('D').apply(list)
 
 
 # data['created_at'] = pd.to_datetime(data['created_at'])
