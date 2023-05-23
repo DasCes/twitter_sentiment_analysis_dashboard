@@ -140,11 +140,12 @@ def main():
             if data_size == "last month":
                 st.title("Sentiment analysis on last month dataset", anchor=None, help=None)
                 df_list = []
-                current_month = []
+                current_day = []
                 for index, day_analysis in lastMonth_data.iterrows():
 
-                    current_day = []
+
                     current_day.append(index)
+                    # print()
 
                     vader_negative = day_analysis['xlm_roberta_SCORE_numeric'].count(-1.0)
                     current_day.append(vader_negative)
