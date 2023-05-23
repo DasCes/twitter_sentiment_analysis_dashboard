@@ -23,7 +23,7 @@ tweets_month = lastMonth_data.resample('D').apply(list)
 
 
 end_date = data['created_at'].max().date()  # Get the maximum date in the 'created_at' column
-start_date = end_date - timedelta(days=7)  # Subtract 30 days from the end date
+start_date = end_date - timedelta(days=6)  # Subtract 30 days from the end date
 lastWeek_data = data[(data['created_at'].dt.date >= start_date) & (data['created_at'].dt.date <= end_date)]
 lastWeek_data.set_index("created_at", inplace=True)
 tweets_week = lastWeek_data.resample('D').apply(list)
