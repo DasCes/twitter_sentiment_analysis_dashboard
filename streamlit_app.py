@@ -198,6 +198,16 @@ def main():
                 fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
 
+                # per creare pie chart xml_roberta
+                score_piechart = [0, 0, 0]
+                labels = ["negative", "neutral", "positive"]
+                for x in lastMonth_data.xlm_roberta_SCORE_numeric:
+                    score_piechart[int(x) + 1] += 1
+
+                fig = px.pie(names=labels, values=score_piechart,
+                             color_discrete_sequence=['#1b64ab', '#89c3eb', '#f53c3c'])
+                st.plotly_chart(fig, use_container_width=False, sharing="streamlit", theme="streamlit")
+
             if data_size == "last month" and sentiment_model_selected == "vader":
                 st.title("Sentiment analysis on last month dataset", anchor=None, help=None)
                 df_list = []
@@ -220,6 +230,16 @@ def main():
                 # fig.update_xaxes(ticktext=custom_labels, tickvals=df['weeks'])
                 fig.update_layout(yaxis=dict(title='number of tweets'))
                 st.plotly_chart(fig)
+
+                # per creare pie chart vader
+                score_piechart = [0, 0, 0]
+                labels = ["negative", "neutral", "positive"]
+                for x in lastMonth_data.vader_SCORE_pnn_numeric:
+                    score_piechart[int(x) + 1] += 1
+
+                fig = px.pie(names=labels, values=score_piechart,
+                             color_discrete_sequence=['#1b64ab', '#89c3eb', '#f53c3c'])
+                st.plotly_chart(fig, use_container_width=False, sharing="streamlit", theme="streamlit")
 
             if data_size == "last week" and sentiment_model_selected == "vader":
                 st.title("Sentiment analysis on last week dataset", anchor=None, help=None)
