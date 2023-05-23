@@ -42,8 +42,13 @@ def main():
                 """A lato viene mostrata la topic analysis prodotta da "Bertopic model" """
             )
 
-    if analysis_type_selected == "sentiment analysis" and data_size == "Complete dataset":
-        st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
+    if analysis_type_selected == "sentiment analysis":
+            if data_size == "Complete dataset":
+                st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
+            if data_size == "last month":
+                st.title("Sentiment analysis on last month dataset", anchor=None, help=None)
+            if data_size == "last week":
+                st.title("Sentiment analysis on last week dataset", anchor=None, help=None)
 
 
 
