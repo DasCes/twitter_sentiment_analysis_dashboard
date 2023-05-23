@@ -42,7 +42,7 @@ def main():
                 """A lato viene mostrata la topic analysis prodotta da "Bertopic model" """
             )
 
-    if data_size == "Complete dataset":
+    if analysis_type_selected == "sentiment analysis" and data_size == "Complete dataset":
         st.title("Sentiment analysis on complete dataset", anchor=None, help=None)
 
 
